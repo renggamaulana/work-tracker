@@ -67,7 +67,7 @@ export default function WorkLogsPage() {
   };
 
   const handleDelete = async (worklog: WorkLog) => {
-    if (!confirm('Apakah Anda yakin ingin menghapus log ini?')) return;
+    if (!confirm('Are you sure want to delete this log?')) return;
     try {
       await worklogService.deleteWorkLog(worklog.id);
       setWorklogs((prev) => prev.filter((w) => w.id !== worklog.id));
@@ -92,7 +92,7 @@ export default function WorkLogsPage() {
 
         <input
           type="text"
-          placeholder="Cari pekerjaan..."
+          placeholder="Search..."
           className="p-2 border border-white/20 rounded w-full mb-4 bg-white/10 text-white placeholder:text-white/50"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
