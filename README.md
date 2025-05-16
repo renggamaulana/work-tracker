@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📦 Work Tracker Frontend – Next.js Application
 
-## Getting Started
+**Work Tracker Frontend** adalah aplikasi web berbasis Next.js yang berfungsi sebagai antarmuka pengguna untuk mengelola pencatatan pekerjaan pegawai dan perhitungan remunerasi yang disediakan oleh backend Laravel.
 
-First, run the development server:
+---
 
-```bash
+## 🔧 Teknologi
+
+- **Framework**: Next.js 13+ (React)
+- **Styling**: Tailwind CSS
+- **HTTP Client**: Axios
+- **Routing**: Next.js Router (App Router atau Pages Router)
+- **State Management**: React useState, useEffect (simple state)
+
+---
+
+## 🧩 Arsitektur Solusi
+
+### 📌 Alur Data
+
+```text
+[User Interface (Next.js)]
+          ↓ (Axios HTTP Requests)
+[Laravel REST API Backend]
+          ↓
+[Database MySQL (Laravel)]
+Pengguna memasukkan data pekerjaan dan kontribusi pegawai melalui form.
+
+Frontend mengirim data via Axios ke endpoint Laravel.
+
+Backend melakukan validasi, perhitungan remunerasi, dan penyimpanan.
+
+Data hasil (termasuk daftar pekerjaan & contributors) dikirim balik ke frontend.
+
+Frontend menampilkan data secara dinamis dan responsif.
+
+🛠️ Setup & Deploy
+1. Clone Repository
+git clone https://github.com/yourusername/taskpay-frontend.git
+cd taskpay-frontend
+
+2. Install Dependencies
+npm install
+# atau
+yarn install
+
+3. Konfigurasi Environment
+Buat file .env atau .env.local di root proyek dan isi:
+
+
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
+Sesuaikan URL jika backend berjalan di alamat lain.
+
+4. Jalankan Development Server
 npm run dev
-# or
+# atau
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Akses aplikasi di:
+📍 http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🔄 Fitur Utama
+Menampilkan daftar pekerjaan dengan remunerasi secara realtime.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Form untuk tambah dan edit pekerjaan, termasuk multiple contributors.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Sort dan filter sederhana di tabel data.
 
-## Learn More
+Validasi input client-side sebelum submit.
 
-To learn more about Next.js, take a look at the following resources:
+Navigasi yang responsif dan mudah digunakan.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contoh endpoint utama:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+GET /work-logs
 
-## Deploy on Vercel
+POST /work-logs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+PUT /work-logs/{id}
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+DELETE /work-logs/{id}
+
+⚠️ Tantangan & Solusi
+Pengelolaan form dengan banyak kontributor
+Solusi: Menggunakan React state dinamis untuk menambah/hapus input kontributor.
+
+Handling error dari API
+Solusi: Menampilkan pesan error dari backend menggunakan SweetAlert2 atau toast notification.
+
+Responsivitas tabel data yang banyak kolom
+Solusi: Membungkus tabel dalam container dengan overflow-x-auto untuk scroll horizontal.
+
+Sinkronisasi data antar halaman (list, create, edit)
+Solusi: Fetch ulang data setelah operasi sukses, atau menggunakan state management ringan.
