@@ -22,7 +22,7 @@ const Sidebar: React.FC = () => {
     <>
       <div className="mb-8">
         <Link href="/" className="text-2xl font-bold text-center block">
-          Penjualan Barang
+          Employee Work Tracker
         </Link>
       </div>
 

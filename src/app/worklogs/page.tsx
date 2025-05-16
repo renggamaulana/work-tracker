@@ -8,6 +8,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import MainContainer from '@/components/MainContainer';
 import useDebounce from '@/hooks/useDebounce';
 import worklogService from '@/services/worklogService';
+import { formatRupiah } from '@/utils/formatRupiah';
 
 interface Contributor {
   employee_name: string;
@@ -135,12 +136,12 @@ export default function WorkLogsPage() {
                           {log.contributors.map((c) => c.employee_name).join(', ')}
                         </td>
                         <td className="p-3">
-                          {log.contributors.reduce((acc, curr) => acc + curr.hours_spent, 0)} jam
+                         {log.contributors.reduce((acc, curr) => acc + Number(curr.hours_spent), 0).toLocaleString('id-ID', { minimumFractionDigits: 0, maximumFractionDigits: 2 })} jam
                         </td>
-                        <td className="p-3">Rp {log.hourly_rate.toLocaleString()}</td>
+                        <td className="p-3">{formatRupiah(log.hourly_rate)}</td>
                         <td className="p-3">Rp {log.additional_charges.toLocaleString()}</td>
                         <td className="p-3 font-semibold text-green-400">
-                          Rp {log.total_remuneration.toLocaleString()}
+                          {formatRupiah(log.total_remuneration)}
                         </td>
                         <td className="p-3">
                           <div className="flex gap-2">
