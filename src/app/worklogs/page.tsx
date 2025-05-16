@@ -139,7 +139,7 @@ export default function WorkLogsPage() {
                          {log.contributors.reduce((acc, curr) => acc + Number(curr.hours_spent), 0).toLocaleString('id-ID', { minimumFractionDigits: 0, maximumFractionDigits: 2 })} jam
                         </td>
                         <td className="p-3">{formatRupiah(log.hourly_rate)}</td>
-                        <td className="p-3">Rp {log.additional_charges.toLocaleString()}</td>
+                        <td className="p-3">{formatRupiah(log.additional_charges)}</td>
                         <td className="p-3 font-semibold text-green-400">
                           {formatRupiah(log.total_remuneration)}
                         </td>
