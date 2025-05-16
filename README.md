@@ -36,8 +36,8 @@ Frontend menampilkan data secara dinamis dan responsif.
 
 🛠️ Setup & Deploy
 1. Clone Repository
-git clone https://github.com/yourusername/taskpay-frontend.git
-cd taskpay-frontend
+git clone https://github.com/renggamaulana/work-tracker.git
+cd work-tracker
 
 2. Install Dependencies
 npm install
